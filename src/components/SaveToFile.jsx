@@ -22,8 +22,9 @@ const SaveToFile = () => {
         if (typeof reader.result !== 'string') {
           return;
         }
+        const object = JSON.parse(reader.result);
         dispatch(itemsRemove());
-        dispatch(itemsAdd(JSON.parse(reader.result)));
+        dispatch(itemsAdd(object));
         message.success(`${file.name} успешно загружена`);
       } catch (e) {
         console.log(e);
@@ -41,7 +42,7 @@ const SaveToFile = () => {
           <Button
             onClick={handleDownload}
             type="primary"
-            className="w-50 mx-auto"
+            className="d-inline mx-auto"
             icon={<DownloadOutlined />}
           >
             Скачать расстановку

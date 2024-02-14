@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { DndContext } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
@@ -19,15 +20,22 @@ const App = () => {
   };
 
   return (
-    <div className="container d-flex my-4 gap-5">
-      <div className="col-4 d-flex flex-column gap-5">
+    <div className="container d-flex flex-column flex-md-row my-4 gap-5">
+      <div className="col-md-4 d-flex flex-column gap-5">
         <CreateItem />
         <SaveToFile />
       </div>
-      <div className="col-8 bg">
-        <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToParentElement]}>
+      <div className="col-md-8 bg position-relative">
+        <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToParentElement]} autoScroll={false}>
           {items.map((item) => (
-            <Draggable key={item.id} id={item.id} form={item.form} left={item.x} top={item.y} />
+            <Draggable
+              key={item.id}
+              id={item.id}
+              form={item.form}
+              src={item.src}
+              left={item.x}
+              top={item.y}
+            />
           ))}
         </DndContext>
       </div>
